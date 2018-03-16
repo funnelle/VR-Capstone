@@ -1,0 +1,3 @@
+[submodule "Assets/Quaternius-Assets"]
+	path = Assets/Quaternius-Assets
+	url = https://github.com/StringVar/Quaternius-Assets.git
