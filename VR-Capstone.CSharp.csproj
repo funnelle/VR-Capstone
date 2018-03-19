@@ -444,14 +444,6 @@
     <Compile Include="Assets\OVR\Scripts\Util\OVRScreenFade.cs" />
     <Compile Include="Assets\OVR\Scripts\Util\OVRTrackedRemote.cs" />
     <Compile Include="Assets\OVR\Scripts\Util\OVRWaitCursor.cs" />
-    <Compile Include="Assets\OvrAvatar\Samples\GripPoses\Scripts\PoseEditHelper.cs" />
-    <Compile Include="Assets\OvrAvatar\Samples\RemoteLoopback\Scripts\RemoteLoopbackManager.cs" />
-    <Compile Include="Assets\OvrAvatar\Samples\SocialStarter\Assets\Scripts\P2PManager.cs" />
-    <Compile Include="Assets\OvrAvatar\Samples\SocialStarter\Assets\Scripts\PlatformManager.cs" />
-    <Compile Include="Assets\OvrAvatar\Samples\SocialStarter\Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\OvrAvatar\Samples\SocialStarter\Assets\Scripts\RemotePlayer.cs" />
-    <Compile Include="Assets\OvrAvatar\Samples\SocialStarter\Assets\Scripts\RoomManager.cs" />
-    <Compile Include="Assets\OvrAvatar\Samples\SocialStarter\Assets\Scripts\VoipManager.cs" />
     <Compile Include="Assets\OvrAvatar\Scripts\OvrAvatar.cs" />
     <Compile Include="Assets\OvrAvatar\Scripts\OvrAvatarAsset.cs" />
     <Compile Include="Assets\OvrAvatar\Scripts\OvrAvatarAssetMesh.cs" />
@@ -475,6 +467,9 @@
     <Compile Include="Assets\OvrAvatar\Scripts\OvrAvatarSkinnedMeshRenderPBSComponent.cs" />
     <Compile Include="Assets\OvrAvatar\Scripts\OvrAvatarSkinnedMeshRenderPBSV2Component.cs" />
     <Compile Include="Assets\OvrAvatar\Scripts\OvrAvatarTouchController.cs" />
+    <Compile Include="Assets\Resources\Scripts\Hand.cs" />
+    <Compile Include="Assets\Resources\Scripts\PlatformManager.cs" />
+    <Compile Include="Assets\Resources\Scripts\Wrist_Menu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\OVR\Editor\AndroidManifest.OVRSubmission.xml" />
@@ -497,7 +492,6 @@
     <None Include="Assets\OvrAvatar\Content\Materials\AvatarSurfaceShaderPBS.shader" />
     <None Include="Assets\OvrAvatar\Content\Materials\AvatarSurfaceShaderPBSV2.shader" />
     <None Include="Assets\OvrAvatar\Content\Materials\AvatarSurfaceShaderSelfOccluding.shader" />
-    <None Include="Assets\OvrAvatar\Samples\SocialStarter\README.txt" />
     <None Include="Assets\Quaternius-Assets\Quaternius.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
