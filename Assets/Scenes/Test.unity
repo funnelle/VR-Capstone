@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 751747091}
+  spawnedObject: {fileID: 494689540}
 --- !u!1 &892613982 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100006, guid: 910ec90fdb40e8849949dce4f960fdda, type: 3}
@@ -1522,6 +1523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 751747091}
+  spawnedObject: {fileID: 494689540}
 --- !u!114 &1634824051 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11441414, guid: 84c8b8609f9bb434eaf5248f17ff1293,
@@ -1671,6 +1673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 751747091}
+  spawnedObject: {fileID: 494689540}
 --- !u!1 &1919560947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,6 +1868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 751747091}
+  spawnedObject: {fileID: 494689540}
 --- !u!1 &2052288422
 GameObject:
   m_ObjectHideFlags: 0

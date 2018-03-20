@@ -7,6 +7,8 @@ public class Wrist_Menu : MonoBehaviour {
     private SphereCollider handCollider;
     private MeshRenderer menuMesh;
     public GameObject rightHand;
+    public Rigidbody spawnedObject;
+
 	// Use this for initialization
 	void Start () {
         menu = GetComponent<BoxCollider>();
@@ -31,7 +33,31 @@ public class Wrist_Menu : MonoBehaviour {
 
     void OnTriggerEnter(Collider coll) {
         if ((menuMesh.enabled == true) && (coll.gameObject.name.Contains("index3"))) {
-            Debug.Log("Right hand colliding");
+            if (gameObject.name.Contains("_left")) {
+                Rigidbody ballClone;
+                ballClone = Instantiate(spawnedObject, transform.position, transform.rotation) as Rigidbody;
+                Renderer rend = spawnedObject.GetComponent<Renderer>();
+                rend.material.SetColor("_Color", Color.red);
+            }
+            if (gameObject.name.Contains("_right")) {
+                Rigidbody ballClone;
+                ballClone = Instantiate(spawnedObject, transform.position, transform.rotation) as Rigidbody;
+                Renderer rend = spawnedObject.GetComponent<Renderer>();
+                rend.material.SetColor("_Color", Color.blue);
+            }
+            if (gameObject.name.Contains("_top")) {
+                Rigidbody ballClone;
+                ballClone = Instantiate(spawnedObject, transform.position, transform.rotation) as Rigidbody;
+                Renderer rend = ballClone.GetComponent<Renderer>();
+                rend.material.SetColor("_Color", Color.black);
+            }
+            if (gameObject.name.Contains("_bottom")) {
+                Rigidbody ballClone;
+                ballClone = Instantiate(spawnedObject, transform.position, transform.rotation) as Rigidbody;
+                Renderer rend = ballClone.GetComponent<Renderer>();
+                rend.material.SetColor("_Color", Color.green);
+            }
+
         }
     }
 }
