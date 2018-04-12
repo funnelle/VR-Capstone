@@ -467,6 +467,7 @@
     <Compile Include="Assets\OvrAvatar\Scripts\OvrAvatarSkinnedMeshRenderPBSComponent.cs" />
     <Compile Include="Assets\OvrAvatar\Scripts\OvrAvatarSkinnedMeshRenderPBSV2Component.cs" />
     <Compile Include="Assets\OvrAvatar\Scripts\OvrAvatarTouchController.cs" />
+    <Compile Include="Assets\PocketInv.cs" />
     <Compile Include="Assets\Resources\Scripts\ButtonBehaviours.cs" />
     <Compile Include="Assets\Resources\Scripts\Hand.cs" />
     <Compile Include="Assets\Resources\Scripts\Inventory_Swipe.cs" />
