@@ -12,11 +12,9 @@ public class Inventory_Swipe : MonoBehaviour {
 
     GameObject newItem;
 
-
-
-    List<GameObject> objects = new List<GameObject>();
-    int currentDisplayedObj = 0; //index in list of current selected inv obj
-    bool currentObjChanged = false;
+    public List<GameObject> objects = new List<GameObject>();
+    public int currentDisplayedObj = 0; //index in list of current selected inv obj
+    public bool currentObjChanged = false;
     GameObject invItem; //current obj being displayed
 
     // Use this for initialization
@@ -45,6 +43,7 @@ public class Inventory_Swipe : MonoBehaviour {
         //identifies if an object is being held in the right hand
         if (grabbedObj.grabbedObject != null) {
             heldObj = grabbedObj.grabbedObject;
+            Debug.Log(heldObj);
             heldObj.transform.parent = null;
         }
         else {
@@ -64,7 +63,7 @@ public class Inventory_Swipe : MonoBehaviour {
             Destroy(GameObject.Find(heldObj.name).GetComponent<Rigidbody>());
             Debug.Log(objects.Count);
         }
-        if ((inventory.activeSelf ==true) && (objects.Count > 0) && (coll.name.Contains("RightHandAnchor"))) { //&& (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > 0.5)) {
+        if ((inventory.activeSelf ==true) && (objects.Count > 0) && (coll.name.Contains("RightHandAnchor"))) { 
             Debug.Log(objects[currentDisplayedObj].name);
             newItem = GameObject.Find(objects[currentDisplayedObj].name);
             newItem.GetComponent<MeshRenderer>().enabled = true;
