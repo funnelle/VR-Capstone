@@ -43,7 +43,7 @@ public class Inventory_Swipe : MonoBehaviour {
         //identifies if an object is being held in the right hand
         if (grabbedObj.grabbedObject != null) {
             heldObj = grabbedObj.grabbedObject;
-            Debug.Log(heldObj);
+            //Debug.Log(heldObj);
             heldObj.transform.parent = null;
         }
         else {
@@ -61,10 +61,10 @@ public class Inventory_Swipe : MonoBehaviour {
             GameObject.Find(heldObj.name).GetComponent<BoxCollider>().enabled = false;
             GameObject.Find(heldObj.name).GetComponent<OVRGrabbable>().enabled = false;
             Destroy(GameObject.Find(heldObj.name).GetComponent<Rigidbody>());
-            Debug.Log(objects.Count);
+            //Debug.Log(objects.Count);
         }
         if ((inventory.activeSelf ==true) && (objects.Count > 0) && (coll.name.Contains("RightHandAnchor"))) { 
-            Debug.Log(objects[currentDisplayedObj].name);
+            //Debug.Log(objects[currentDisplayedObj].name);
             newItem = GameObject.Find(objects[currentDisplayedObj].name);
             newItem.GetComponent<MeshRenderer>().enabled = true;
             newItem.GetComponent<BoxCollider>().enabled = true;
@@ -77,7 +77,7 @@ public class Inventory_Swipe : MonoBehaviour {
 
             objects.RemoveAt(currentDisplayedObj);
             Destroy(invItem);
-            Debug.Log(objects.Count);
+            //Debug.Log(objects.Count);
             newItem.SetActive(true);
 
 
