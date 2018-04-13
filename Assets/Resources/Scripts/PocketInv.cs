@@ -29,8 +29,6 @@ public class PocketInv : MonoBehaviour {
         //identifies if an object is being held in the right hand
         if (grabbedObjRight.grabbedObject != null) {
             heldObj = grabbedObjRight.grabbedObject;
-            Debug.Log(heldObj);
-            //heldObj.transform.parent = null;
         }
         else {
             heldObj = null;
@@ -50,37 +48,35 @@ public class PocketInv : MonoBehaviour {
     void OnTriggerEnter(Collider coll) {
         //Adds obj if currentOBj already set
         if ((heldObj != null) && (currentObject != null) && (isHeld)) {
-            if (heldObj.name == currentObject.name) {
-                Debug.Log(GameObject.Find(heldObj.name));
-                Destroy(GameObject.Find(heldObj.name));
+            if ((heldObj.name == currentObject.name) && (coll.name == currentObject.name)) {
+                Destroy(heldObj.gameObject);
                 numObjects++;
                 
             }
         }
         //Adds obj if container is Empty
         if ((heldObj != null) && (currentObject == null) && (isHeld)) {
-            Debug.Log("New Item, adding Item");
-            currentObject = GameObject.Find(heldObj.name);
-            objScale = heldObj.transform.localScale;
-            grabbedObjRight.ForceRelease(heldObj);
-            //GameObject.Find(heldObj.name).transform.parent = this.transform;
-            GameObject.Find(heldObj.name).GetComponent<MeshRenderer>().enabled = false;
-            GameObject.Find(heldObj.name).GetComponent<BoxCollider>().enabled = false;
-            GameObject.Find(heldObj.name).GetComponent<OVRGrabbable>().enabled = false;
-            Destroy(GameObject.Find(heldObj.name).GetComponent<Rigidbody>());
-            numObjects++;
-            
+            if ((coll.gameObject == heldObj.gameObject)) {
+                currentObject = heldObj.gameObject;
+                objScale = heldObj.transform.localScale;
+                grabbedObjRight.ForceRelease(heldObj);
+                heldObj.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                heldObj.gameObject.GetComponent<BoxCollider>().enabled = false;
+                heldObj.gameObject.GetComponent<OVRGrabbable>().enabled = false;
+                Destroy(heldObj.gameObject.GetComponent<Rigidbody>());
+                numObjects++;
+            }
         }
         //Takes out Obj if Container contains items and hand is empty
         if ((numObjects > 0) && (coll.name.Contains("RightHandAnchor")) && (currentObject != null) && (isHeld)) {
             newItem = Instantiate(currentObject, transform.position, Quaternion.identity) as GameObject;
+            newItem.name = currentObject.name;
             newItem.GetComponent<MeshRenderer>().enabled = true;
             newItem.GetComponent<BoxCollider>().enabled = true;
             newItem.GetComponent<OVRGrabbable>().enabled = true;
             newItem.AddComponent<Rigidbody>();
             newItem.GetComponent<Rigidbody>().useGravity = false;
             Transform newItemPos = newItem.GetComponent<Transform>();
-            //newItemPos.localPosition = new Vector3(-0.2f, 0.01f, -0.165f);
             newItemPos.localRotation = Quaternion.identity;
             newItemPos.localScale = objScale;
             newItem.SetActive(true);

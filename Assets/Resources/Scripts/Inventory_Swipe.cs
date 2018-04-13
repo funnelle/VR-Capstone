@@ -43,7 +43,7 @@ public class Inventory_Swipe : MonoBehaviour {
         //identifies if an object is being held in the right hand
         if (grabbedObj.grabbedObject != null) {
             heldObj = grabbedObj.grabbedObject;
-            Debug.Log(heldObj);
+            //Debug.Log(heldObj);
             heldObj.transform.parent = null;
         }
         else {
@@ -54,18 +54,18 @@ public class Inventory_Swipe : MonoBehaviour {
 
     void OnTriggerEnter(Collider coll) {
         if ((heldObj != null) && (inventory.activeSelf == true)) {
-            objects.Add(GameObject.Find(heldObj.name));
+            objects.Add(heldObj.gameObject);
             grabbedObj.ForceRelease(heldObj);
-            GameObject.Find(heldObj.name).transform.parent = this.transform;
-            GameObject.Find(heldObj.name).GetComponent<MeshRenderer>().enabled = false;
-            GameObject.Find(heldObj.name).GetComponent<BoxCollider>().enabled = false;
-            GameObject.Find(heldObj.name).GetComponent<OVRGrabbable>().enabled = false;
-            Destroy(GameObject.Find(heldObj.name).GetComponent<Rigidbody>());
-            Debug.Log(objects.Count);
+            heldObj.gameObject.transform.parent = this.transform;
+            heldObj.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            heldObj.gameObject.GetComponent<BoxCollider>().enabled = false;
+            heldObj.gameObject.GetComponent<OVRGrabbable>().enabled = false;
+            Destroy(heldObj.gameObject.GetComponent<Rigidbody>());
+            //Debug.Log(objects.Count);
         }
         if ((inventory.activeSelf ==true) && (objects.Count > 0) && (coll.name.Contains("RightHandAnchor"))) { 
-            Debug.Log(objects[currentDisplayedObj].name);
-            newItem = GameObject.Find(objects[currentDisplayedObj].name);
+            //Debug.Log(objects[currentDisplayedObj].name);
+            newItem = objects[currentDisplayedObj];
             newItem.GetComponent<MeshRenderer>().enabled = true;
             newItem.GetComponent<BoxCollider>().enabled = true;
             newItem.GetComponent<OVRGrabbable>().enabled = true;
@@ -77,16 +77,27 @@ public class Inventory_Swipe : MonoBehaviour {
 
             objects.RemoveAt(currentDisplayedObj);
             Destroy(invItem);
-            Debug.Log(objects.Count);
+            currentObjChanged = true;
+            if ((currentDisplayedObj - 1) >= 0) {
+                currentDisplayedObj -= 1;
+            }
+            else {
+                currentDisplayedObj += 1;
+            }
+
+            //Debug.Log(objects.Count);
             newItem.SetActive(true);
-
-
         }
     }
 
     void showInvObj() {
         //display whatever is the currently viewed inventory object
         if (invItem == null || currentObjChanged == true) {
+            //remove old obj if current object changed
+            if (currentObjChanged == true) {
+                Destroy(invItem);
+            }
+
             currentObjChanged = false;
 
             //invItem = Instantiate(objects[currentDisplayedObj], new Vector3(-0.2f, 0.01f, -0.165f), Quaternion.identity, invPosition) as GameObject;
