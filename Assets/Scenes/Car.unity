@@ -177,7 +177,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 50b56e83c09d84b49acf375cf2d30032, type: 2}
+  - {fileID: 2100000, guid: cd00cde21fbd8cf4f8440178fd19a28c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -495,7 +495,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1396938911}
   - component: {fileID: 1396938910}
-  - component: {fileID: 1396938912}
   m_Layer: 0
   m_Name: World Controller
   m_TagString: Untagged
@@ -529,37 +528,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1396938912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1396938909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d95c8a5b4bdcaf479d6379c5d4ad701, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  X:
-    pressed: 0
-    touch: 0
-  Y:
-    pressed: 0
-    touch: 0
-  A:
-    pressed: 0
-    touch: 0
-  B:
-    pressed: 0
-    touch: 0
-  leftThumbstick:
-    x: 0
-    y: 0
-  rightThumbstick:
-    x: 0
-    y: 0
-  leftTrigger: 0
-  rightTrigger: 0
 --- !u!1 &1747136678
 GameObject:
   m_ObjectHideFlags: 0
