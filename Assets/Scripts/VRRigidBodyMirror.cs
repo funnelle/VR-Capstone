@@ -7,7 +7,9 @@ public class VRRigidBodyMirror : MonoBehaviour
     public OVRInput.Controller hand;
     public float damper_value;
     public type motion_type;
-
+    public bool disableGravityOnMove;
+    [Tooltip("only activate movement when the user is gripping")]
+    public bool onlyOnGrip;
     private Rigidbody rb;
 
     public enum type
@@ -16,7 +18,8 @@ public class VRRigidBodyMirror : MonoBehaviour
         add_velocity_from_velocity,
         set_velocity_from_acceleration,
         add_velocity_from_acceleration,
-        add_force_from_acceleration
+        add_force_from_acceleration,
+        add_force_from_velocity
     }
 
     // Use this for initialization
@@ -28,6 +31,31 @@ public class VRRigidBodyMirror : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (onlyOnGrip)
+        {
+            if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, hand) > 0.1)
+            {
+                rb.useGravity = !disableGravityOnMove;
+                UpdateMotion();
+            }
+            else
+            {
+                rb.useGravity = true;
+            }
+    }
+        else
+        {
+
+            UpdateMotion();
+        }
+        
+        
+        
+    }
+
+    void UpdateMotion()
+    {
+        
         switch (motion_type)
         {
             case type.set_velocity_from_velocity:
@@ -46,6 +74,10 @@ public class VRRigidBodyMirror : MonoBehaviour
 
             case type.add_force_from_acceleration:
                 rb.AddForce(OVRInput.GetLocalControllerAcceleration(hand) / damper_value);
+                break;
+                
+            case type.add_force_from_velocity:
+                rb.AddForce(OVRInput.GetLocalControllerVelocity(hand) / damper_value);
                 break;
         }
     }
