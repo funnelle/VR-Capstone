@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory_Swipe : MonoBehaviour {
+    //public variables
     public GameObject inventory;
     public GameObject rightHand;
 
+    //private variables
     private Transform invPosition;
     private OVRGrabber grabbedObj;
     private OVRGrabbable heldObj;
 
     GameObject newItem;
 
+    //list containing all objects
     public List<GameObject> objects = new List<GameObject>();
     public int currentDisplayedObj = 0; //index in list of current selected inv obj
     public bool currentObjChanged = false;
@@ -52,19 +55,21 @@ public class Inventory_Swipe : MonoBehaviour {
 
     }
 
+    //Called when a collider enters the box collider
     void OnTriggerEnter(Collider coll) {
+        //if an object is held, and inventory is up, add object to inventory
         if ((heldObj != null) && (inventory.activeSelf == true)) {
             objects.Add(heldObj.gameObject);
             grabbedObj.ForceRelease(heldObj);
-            heldObj.gameObject.transform.parent = this.transform;
+            heldObj.gameObject.transform.parent = this.transform; //set object to be a child of the inventory
+            //Disable all components of the object
             heldObj.gameObject.GetComponent<MeshRenderer>().enabled = false;
             heldObj.gameObject.GetComponent<BoxCollider>().enabled = false;
             heldObj.gameObject.GetComponent<OVRGrabbable>().enabled = false;
             Destroy(heldObj.gameObject.GetComponent<Rigidbody>());
-            //Debug.Log(objects.Count);
         }
+        //if hand is empty and there are items in the inventory, spaw the currently displayed item
         if ((inventory.activeSelf ==true) && (objects.Count > 0) && (coll.name.Contains("RightHandAnchor"))) { 
-            //Debug.Log(objects[currentDisplayedObj].name);
             newItem = objects[currentDisplayedObj];
             newItem.GetComponent<MeshRenderer>().enabled = true;
             newItem.GetComponent<BoxCollider>().enabled = true;
@@ -75,21 +80,21 @@ public class Inventory_Swipe : MonoBehaviour {
             newItemPos.localPosition = new Vector3(-0.2f, 0.01f, -0.165f);
             newItemPos.localRotation = Quaternion.identity;
 
-            objects.RemoveAt(currentDisplayedObj);
+            objects.RemoveAt(currentDisplayedObj); //remove object from list
             Destroy(invItem);
-            currentObjChanged = true;
+            currentObjChanged = true; //object removed need to signal a change of item shown
+            //if an item is removed, if possible display previous item in list, if not display next
             if ((currentDisplayedObj - 1) >= 0) {
                 currentDisplayedObj -= 1;
             }
             else {
                 currentDisplayedObj += 1;
             }
-
-            //Debug.Log(objects.Count);
             newItem.SetActive(true);
         }
     }
 
+    //Displays a representation of the current selected object
     void showInvObj() {
         //display whatever is the currently viewed inventory object
         if (invItem == null || currentObjChanged == true) {

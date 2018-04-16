@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+ * Solution Created by RGBSchemes
+ * Code can be found at http://www.rgbschemes.com/blog/oculus-touch-and-finger-stuff-part-1/ and http://www.rgbschemes.com/blog/oculus-touch-and-finger-stuff-part-2/
+ * Bone structure used to detect finger tips in Wrist_Menu Scene when selecting panels, and Wrist_Inventory Scene when pressing inventory buttons, and provides more realistic hand features to other scenes
+ */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

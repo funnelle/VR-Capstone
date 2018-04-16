@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PocketInv : MonoBehaviour {
+    //public variables
     public GameObject rightHand;
     public GameObject leftHand;
     public bool isHeld = false;
 
+    //private variables
     private OVRGrabber grabbedObjRight;
     private OVRGrabber grabbedObjLeft;
     private OVRGrabbable heldObj;
     private Vector3 objScale;
-
-    GameObject newItem;
+    private GameObject newItem;
 
     //Variables to track objects inside
     public int numObjects;
@@ -60,6 +61,7 @@ public class PocketInv : MonoBehaviour {
                 currentObject = heldObj.gameObject;
                 objScale = heldObj.transform.localScale;
                 grabbedObjRight.ForceRelease(heldObj);
+                //disable all components of the item being stored
                 heldObj.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 heldObj.gameObject.GetComponent<BoxCollider>().enabled = false;
                 heldObj.gameObject.GetComponent<OVRGrabbable>().enabled = false;
@@ -70,7 +72,8 @@ public class PocketInv : MonoBehaviour {
         //Takes out Obj if Container contains items and hand is empty
         if ((numObjects > 0) && (coll.name.Contains("RightHandAnchor")) && (currentObject != null) && (isHeld)) {
             newItem = Instantiate(currentObject, transform.position, Quaternion.identity) as GameObject;
-            newItem.name = currentObject.name;
+            newItem.name = currentObject.name; //prevents cloned objects causing name problems
+            //renable all the compoents we disabled on the original object earlier
             newItem.GetComponent<MeshRenderer>().enabled = true;
             newItem.GetComponent<BoxCollider>().enabled = true;
             newItem.GetComponent<OVRGrabbable>().enabled = true;
@@ -81,6 +84,7 @@ public class PocketInv : MonoBehaviour {
             newItemPos.localScale = objScale;
             newItem.SetActive(true);
 
+            //remove one object from total inside
             numObjects--;
             if (numObjects == 0) {
                 currentObject = null;
