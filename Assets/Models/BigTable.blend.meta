@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8adbeaa6868bad642a75c407ac9c9c5f
+guid: 85a96a9e018b9c84d834fbe6a29f9c48
 timeCreated: 1518392466
 licenseType: Free
 ModelImporter:
@@ -13,7 +13,12 @@ ModelImporter:
     4300000: Cube
     7400000: Default Take
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TableMaterial
+    second: {fileID: 2100000, guid: 3c678161aedac944098392cf272f3fa3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
